@@ -4,3 +4,8 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+evdev = "0.13.2"
+hyprland = { git = "https://github.com/hyprland-community/hyprland-rs", branch = "master" }
+iced = "0.14.0"
+iced_layershell = "0.17.1"
+tokio = "1.52.1"
