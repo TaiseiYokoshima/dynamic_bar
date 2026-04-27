@@ -1,10 +1,9 @@
-use evdev::{Device, InputEvent, KeyCode};
+use evdev::{Device, KeyCode};
 use std::fs::File;
 use tokio::io::unix::AsyncFd;
-use std::sync::Mutex;
 
 pub async fn run() -> std::io::Result<()> {
-   let file = File::open("/dev/input/event24")?;
+   let file = File::open("/dev/input/event0")?;
    let file = std::os::fd::OwnedFd::from(file);
    let device = Device::from_fd(file)?;
 
@@ -23,14 +22,6 @@ pub async fn run() -> std::io::Result<()> {
       for event in events {
          let event = match event.destructure() {
             evdev::EventSummary::Key(_, KeyCode::KEY_LEFTMETA, x) => x,
-            // evdev::EventSummary::Key(e, code, typ) => {
-            //    println!("got e: {e:?}, code: {code:?}, type: {typ:?}");
-            //    continue;
-            // },
-            // other => {
-            //    println!("other: {other:?}");
-            //    continue;
-            // },
             _ => continue,
          };
 
