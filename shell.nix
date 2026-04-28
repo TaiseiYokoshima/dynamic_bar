@@ -13,10 +13,11 @@ pkgs.mkShell {
       wayland-protocols
       libxkbcommon
       libinput
+
+      vulkan-loader
    ]);
 
    shellHook = ''
-      export XKB_CONFIG_ROOT=${pkgs.xkeyboard_config}/share/X11/xkb
       exec ${pkgs.fish}/bin/fish
    '';
 }
