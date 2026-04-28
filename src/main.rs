@@ -4,15 +4,18 @@ mod inputs;
 mod layer;
 mod hypr;
 
-
 use std::{io::Write, sync::Arc};
 
 use tokio::io::{AsyncBufReadExt, BufReader};
 
-#[tokio::main(flavor="current_thread")]
-async fn main() {
 
 
+fn window() {
+   window::run().unwrap();
+}
+
+
+async fn run() {
    let rx = tokio_util::sync::CancellationToken::new();
 
 
@@ -32,7 +35,14 @@ async fn main() {
 
    task.await.unwrap().unwrap();
    println!("shell exited");
+}
 
 
+#[tokio::main(flavor="current_thread")]
+async fn main() {
+   run().await;
+   
    // inputs::run().await.unwrap();
+
+   // window();
 }
